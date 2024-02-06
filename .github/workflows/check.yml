@@ -82,7 +82,7 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
-      - name: Check tests
+      - name: ios_supported_languages
         run: |
           flutter pub get
           cd tool 
@@ -103,7 +103,7 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
-      - name: Check tests
+      - name: adapt_app_version
         run: |
           flutter pub get
           cd tool 
