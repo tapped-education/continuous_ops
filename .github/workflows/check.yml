@@ -27,7 +27,12 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
       - name: Analyze app
-        run: flutter pub get && flutter analyze
+        run: |
+          flutter pub get 
+          cd tool 
+          flutter pub get 
+          cd ..
+          flutter analyze
 
   format:
     timeout-minutes: 5
