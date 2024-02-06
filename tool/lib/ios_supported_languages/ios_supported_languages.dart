@@ -7,9 +7,11 @@ void main(List<String> arguments) async {
 
   final supportedIosLanguages = _findIosSupportedLanguages();
 
-  final missingSupportedLanguages = supportedSourceFiles.difference(supportedIosLanguages);
+  final missingSupportedLanguages =
+      supportedSourceFiles.difference(supportedIosLanguages);
 
-  final missingSourceFiles = supportedIosLanguages.difference(supportedSourceFiles);
+  final missingSourceFiles =
+      supportedIosLanguages.difference(supportedSourceFiles);
 
   if (missingSupportedLanguages.isNotEmpty) {
     throw Exception(
@@ -26,7 +28,8 @@ void main(List<String> arguments) async {
 
 // get the supported values from the info.plist file
 Set<String> _findIosSupportedLanguages() {
-  final infoPlistFile = io.File("${io.Directory.current.projectPath}/ios/Runner/Info.plist");
+  final infoPlistFile =
+      io.File("${io.Directory.current.projectPath}/ios/Runner/Info.plist");
 
   final document = XmlDocument.parse(infoPlistFile.readAsStringSync());
 
@@ -56,7 +59,8 @@ extension DirectoryExtension on io.Directory {
       );
     }
 
-    final projectPath = currentPath.substring(0, indexOfProject + projectName.length);
+    final projectPath =
+        currentPath.substring(0, indexOfProject + projectName.length);
 
     return projectPath;
   }

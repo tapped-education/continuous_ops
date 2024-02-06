@@ -14,6 +14,8 @@ class AdaptAppVersionOption {
 
     final argResults = parser.parse(arguments);
 
-    return AdaptAppVersionOption._(version: argResults[_versionParam] as String);
+    return AdaptAppVersionOption._(
+      version: argResults[_versionParam] as String,
+    );
   }
 }

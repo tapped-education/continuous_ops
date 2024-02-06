@@ -62,7 +62,12 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
       - name: Check tests
-        run: flutter pub get && flutter test
+        run: |
+          flutter pub get
+          cd tool 
+          flutter pub get 
+          cd ..
+          flutter test
 
 
   ios_supported_languages:
@@ -78,7 +83,12 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
       - name: Check tests
-        run: flutter pub get && xargs dart run tool/lib/ios_supported_languages/ios_supported_languages.dart
+        run: |
+          flutter pub get
+          cd tool 
+          flutter pub get 
+          cd ..
+          xargs dart run tool/lib/ios_supported_languages/ios_supported_languages.dart
 
 
   adapt_app_version:
@@ -94,5 +104,9 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
       - name: Check tests
-        run: flutter pub get && xargs dart run tool/lib/adapt_app_version/adapt_app_version.dart --version="1.2.3"
-
+        run: |
+          flutter pub get
+          cd tool 
+          flutter pub get 
+          cd ..
+          xargs dart run tool/lib/adapt_app_version/adapt_app_version.dart --version="1.2.3"
