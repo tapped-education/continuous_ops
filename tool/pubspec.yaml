@@ -8,14 +8,10 @@ environment:
 
 dependencies:
   # For parsing the command line args
-
+  args: 2.4.2
   collection: 1.18.0
   # for parsing the ios info.plist file and check out the supported languages
   xml: 6.5.0
 
 dev_dependencies:
   flutter_lints: 3.0.1
-  tapped_lints:
-    git:
-      url: https://github.com/tappeddev/tapped_lints.git
-      ref: master

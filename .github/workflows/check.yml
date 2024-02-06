@@ -73,4 +73,21 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
       - name: Check tests
-        run: xargs dart run tool/lib/ios_supported_languages/ios_supported_languages.dart
+        run: flutter pub get && xargs dart run tool/lib/ios_supported_languages/ios_supported_languages.dart
+
+
+  adapt_app_version:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: kuhnroyal/flutter-fvm-config-action@v1
+        with:
+          path: '.fvm/fvm_config.json'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_CHANNEL }}
+      - name: Check tests
+        run: flutter pub get && xargs dart run tool/lib/adapt_app_version/adapt_app_version.dart --version="1.2.3"
+
