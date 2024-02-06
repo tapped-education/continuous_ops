@@ -1,0 +1,57 @@
+stages:
+  - lint
+  - format
+  - script
+
+image: ghcr.io/cirruslabs/flutter:3.16.7
+
+lint:
+  stage: lint
+  script:
+    - flutter pub get
+    - cd tool
+    - flutter pub get
+    - cd ..
+    - fvm flutter analyze
+  only:
+    - merge_requests
+
+format:
+  stage: format
+  script:
+    - find . -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -path '*/generated/*' ! -path '*/gen/*' | dart format --set-exit-if-changed
+  only:
+    - merge_requests
+
+test:
+  stage: test
+  only:
+    - merge_requests
+  script:
+    - flutter pub get
+    - cd tool
+    - flutter pub get
+    - cd ..
+    - flutter test
+
+
+ios_supported_languages:
+  stage: script
+  only:
+    - merge_requests
+  script:
+    - flutter pub get
+    - cd tool
+    - flutter pub get
+    - dart run lib/ios_supported_languages/ios_supported_languages.dart
+
+
+adapt_app_version:
+  stage: script
+  only:
+    - merge_requests
+  script:
+    - flutter pub get
+    - cd tool
+    - flutter pub get
+    - dart run lib/adapt_app_version/adapt_app_version.dart --version="1.1.2"
